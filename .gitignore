@@ -1,0 +1,58 @@
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js build output
+.next/
+out/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# Ollama model data (if cached)
+.ollama/
+ollama.log
+
+# Docker
+**/docker-compose.override.yml
+**/.docker/
+**/Dockerfile.dev
+**/.dockerignore
+
+# PostgreSQL data (if any volume or local mount)
+pgdata/
+*.dump
+*.sql
+
+# Python (if you use scripts)
+__pycache__/
+*.py[cod]
+*.pyo
+*.sqlite3
+
+
+
+# Others
+*.swp
+.idea/
+*.iml
+*.sublime*
+
+# Build artifacts (if any scripts or dist files)
+dist/
+build/

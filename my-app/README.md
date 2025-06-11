@@ -1,78 +1,94 @@
 
-````markdown
-# 🤖 Olly — Your Offline AI Data Whisperer
+<h1 align="center">🤖 Olly — The Offline AI Data Whisperer</h1>
 
-**Olly** is an intelligent, fully **offline AI chatbot** that understands natural language and talks to your PostgreSQL database like a pro.
+<p align="center">
+  <i>Talk to your database like it's ChatGPT — but fully offline.</i><br/>
+  <strong>Natural Language → SQL → Result</strong>
+</p>
 
-Built with ❤️ using  
-**Next.js**, **PostgreSQL**, **ShadCN/UI**, **Ollama** (with **LLaMA 3.2**), and **Docker**.
-
-> 🚫 No APIs. No Internet. Just raw, local, brainy power.
-
----
-
-## 🧠 What does Olly do?
-
-You ask in plain English, for example:
-> _"Show me all assets under contract that are still active"_
-
-Olly responds with:
-```sql
-SELECT * FROM AssetApp_asset WHERE amc_contract_id IS NOT NULL AND amc_end_date > CURRENT_DATE;
-````
-
-And then presents the result in a **clean, readable format**, like it's always been there.
+<p align="center">
+  <img src="https://img.shields.io/badge/status-active-brightgreen?style=flat-square"/>
+  <img src="https://img.shields.io/badge/built%20with-Next.js-blue?style=flat-square"/>
+  <img src="https://img.shields.io/badge/AI-Ollama%20%2B%20LLaMA3.2-red?style=flat-square"/>
+  <img src="https://img.shields.io/badge/db-PostgreSQL-informational?style=flat-square"/>
+  <img src="https://img.shields.io/badge/UI-shadcn%2Fui-purple?style=flat-square"/>
+</p>
 
 ---
 
-## 💡 Key Features
+## 🧠 What is Olly?
 
-✨ **Offline-First**: No external calls, your data stays safe on your machine
-🧾 **Natural Language to SQL**: Converts questions to optimized queries
-📊 **Readable Insights**: Converts SQL output into clean, human-like answers
-⚙️ **Powered by LLaMA 3.2** via Ollama for locally running LLMs
-🖥️ **Slick UI**: Styled with ShadCN and beautifully animated using Next.js
-🐳 **Containerized**: Seamlessly deploy with Docker
+**Olly** is a local-first AI chatbot that understands your questions in natural language, converts them to SQL, fetches relevant data from your PostgreSQL database, and gives back meaningful insights — all offline.  
+No APIs. No servers. No latency.
 
----
-
-## 🧱 Tech Stack
-
-| Layer            | Tech                                              |
-| ---------------- | ------------------------------------------------- |
-| 🌐 Frontend      | `Next.js` + `Tailwind` + `ShadCN/UI`              |
-| 🧠 AI Engine     | `Ollama` + `LLaMA 3.2`                            |
-| 🗄️ Database     | `PostgreSQL` (natural language queried)           |
-| 📦 Containerized | `Docker` (multi-service)                          | |
+> 💬 _“Show me all assets under AMC that expire this month”_  
+> Olly → SQL → JSON → Human-readable insights.
 
 ---
 
-## 📸 Interface Preview
+## 🚀 Tech Stack
 
-> *(Embed UI Screenshot here)*
-> ![Olly Screenshot](./screenshot.png)
-
----
-
-## 🛡️ Security & Privacy
-
-* 💾 Runs completely offline
-* 🔒 Your data never leaves your machine
-* ✅ Perfect for private enterprise or secure internal use-cases(Made this during my internship in OIL(oil india limited))
+| Layer       | Technology                          |
+|-------------|--------------------------------------|
+| UI          | `Next.js`, `Tailwind`, `ShadCN/UI`  |
+| Database    | `PostgreSQL`                        |
+| AI Engine   | `Ollama` with `LLaMA 3.2`            |
+| Container   | `Docker` (multi-service setup)      |
+| Optional UI | `Gradio` or custom frontend shell   |
 
 ---
 
-## 🏁 Status
+## ⚙️ Features
 
-Olly is actively being developed — join the mission to make SQL obsolete (just kidding… or not).
+- ✅ Offline — works without Internet
+- 🧠 Local LLM inference via LLaMA 3.2
+- 🗣️ Natural language → SQL conversion
+- 📊 Renders SQL results into readable format
+- 🔐 Privacy-safe for enterprise/internal tools
+- ✨ Smooth, modern animated UI (shadcn/ui)
+
+---
+
+## 🖼 UI Preview
+
+> *Minimal, black-themed, modern interface with animated transitions.*
+
+<p align="center">
+  <img src="./screenshot.png" alt="UI Screenshot" width="800"/>
+</p>
+
+> 🎨 Want to preview it? Run locally with Docker or open in Codespaces.
+
+---
+
+## 🧪 How it Works (Internally)
+
+* 💬 User Input → LLM prompt (with table context)
+* 📄 Olly (LLaMA3.2 via Ollama) returns SQL query
+* 🧵 Executes query using Sequelize/SQLAlchemy
+* 🔄 Formats result in a neat, plain answer
+* 🖥️ All running inside Dockerized services
+
+---
+
+## 🛡 Security
+
+* Runs fully offline on your machine
+* No external API calls
+* Your schema and data never leave your system
 
 ---
 
 ## 📝 License
 
-MIT License © 2025 [Prakhar Gupta](https://github.com/your-username)
+MIT © [prax860](https://github.com/prax860)
 
 ---
 
-> “Olly doesn't search. Olly *knows*.”
+> *“Olly doesn't search. Olly *knows*.”*
+
 ```
+
+---
+
+

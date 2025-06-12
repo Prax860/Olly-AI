@@ -1,242 +1,3 @@
-// 'use client'
-
-// import { useState } from 'react'
-
-// export default function SQLPlayground() {
-//   const [query, setQuery] = useState('')
-//   const [result, setResult] = useState('')
-//   const [output, setOutput] = useState('')
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault()
-//     setOutput('')
-//     setResult('Generating...')
-
-//     try {
-//       const response = await fetch('http://localhost:11434/api/chat', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({
-//           model: 'llama3.2',
-//           messages: [
-//             {
-//               role: "system",
-//               content: "You are an expert SQL generator. Only return valid SQL queries (e.g., SELECT, INSERT, UPDATE, DELETE). No explanation. If not possible, return 'INVALID_SQL'.",
-//             },
-//             {
-//               role: "user",
-//               content: query,
-//             }
-//           ],
-//           stream: false
-//         }),
-//       })
-
-//       const data = await response.json()
-//       const generatedQuery = data.message.content.replace(/```sql|```/g, '').trim()
-
-//       // Check if response is clearly invalid
-//       if (
-//         generatedQuery === 'INVALID_SQL' ||
-//         !/^\s*(SELECT|INSERT|UPDATE|DELETE)\s+/i.test(generatedQuery)
-//       ) {
-//         setResult('❌ Invalid SQL generated')
-//         setOutput('The model could not generate a valid SQL query for this prompt. Try rephrasing.')
-//         return
-//       }
-
-//       setResult(generatedQuery)
-
-//       const sqlResponse = await fetch('/api/sql', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({ query: generatedQuery }),
-//       })
-
-//       const sqlData = await sqlResponse.json()
-
-//       if (sqlResponse.ok) {
-//         setOutput(JSON.stringify(sqlData, null, 2))
-//       } else {
-//         setOutput(`❌ Server Error:\n${sqlData.error || 'Unknown error'}`)
-//       }
-//     } catch (error) {
-//       console.error('Error:', error)
-//       setResult('❌ Error generating or executing SQL')
-//       setOutput(String(error))
-//     }
-//   }
-
-//   return (
-//     <div className="max-w-4xl mx-auto p-6">
-//       <h1 className="text-2xl font-bold mb-4">🧪 SQL Playground</h1>
-
-//       <form onSubmit={handleSubmit} className="space-y-4">
-//         <label className="block text-sm font-medium text-gray-700">Enter your prompt:</label>
-//         <input
-//           type="text"
-//           value={query}
-//           onChange={(e) => setQuery(e.target.value)}
-//           placeholder="e.g., show me all users with emails"
-//           className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none"
-//         />
-//         <button
-//           type="submit"
-//           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-//         >
-//           Generate and Run SQL
-//         </button>
-//       </form>
-
-//       {result && (
-//         <div className="mt-6">
-//           <h2 className="text-lg font-semibold mb-2">🤖 Generated SQL:</h2>
-//           <pre className="bg-gray-800 text-green-200 p-3 rounded whitespace-pre-wrap font-mono">
-//             {result}
-//           </pre>
-//         </div>
-//       )}
-
-//       {output && (
-//         <div className="mt-4">
-//           <h2 className="text-lg font-semibold mb-2">📊 Query Output:</h2>
-//           <pre className="bg-gray-100 text-gray-800 p-3 rounded whitespace-pre-wrap font-mono">
-//             {output}
-//           </pre>
-//         </div>
-//       )}
-//     </div>
-//   )
-// }
-// // Note: Make sure to replace the API endpoint URL with your actual backend URL if not running locally.
-// // Also, ensure your backend is set up to handle the SQL execution as shown in the initial code snippet.
-// // 🔧 NOTE:
-// // If you're not running the Next.js backend locally at http://localhost:3000 (default),
-// // replace the API route '/api/sql' with your full backend URL.
-// // Example: 'https://your-deployment-url.vercel.app/api/sql'
-// // Also, ensure your backend API route `/api/sql` is properly set up to accept POST requests
-// // and securely execute the incoming SQL query on your configured database.
-
-
-
-
-
-// 'use client'
-
-// import { useState } from 'react'
-
-// export default function SQLPlayground() {
-//   const [query, setQuery] = useState('')
-//   const [result, setResult] = useState('')
-//   const [output, setOutput] = useState('')
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault()
-
-//     try {
-//       const response = await fetch('http://localhost:11434/api/chat', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({
-//           model: 'llama3.2',
-//           messages: [
-//             {
-//               role: "system",
-//               content: "Only return raw SQL queries. No extra explanation.",
-//             },
-//             {
-//               role: "user",
-//               content: query,
-//             }
-//           ],
-//           stream: false
-//         })
-//       });
-
-//       const data = await response.json()
-//       const generatedQuery = data.message.content.replace(/```sql|```/g, '').trim()
-//       setResult(generatedQuery)
-
-//       const sqlResponse = await fetch('/api/sql', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({ query: generatedQuery }),
-//       })
-
-//       const text = await sqlResponse.text()
-//       try {
-//         const sqlData = JSON.parse(text)
-//         setOutput(JSON.stringify(sqlData, null, 2))
-//       } catch (err) {
-//         console.error('Failed to parse response:', text)
-//         setOutput(`❌ Server Error:\n\n${text}`)
-//       }
-//     } catch (error) {
-//       console.error('Error:', error)
-//       setResult('Error generating or executing SQL')
-//     }
-//   }
-
-//   return (
-//     <div className="max-w-4xl mx-auto p-6">
-//       <h1 className="text-2xl font-bold mb-4">🧪 SQL Playground</h1>
-
-//       <form onSubmit={handleSubmit} className="space-y-4">
-//         <label className="block text-sm font-medium text-gray-700">Enter your prompt:</label>
-//         <input
-//           type="text"
-//           value={query}
-//           onChange={(e) => setQuery(e.target.value)}
-//           placeholder="e.g., show me all users with emails"
-//           className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none"
-//         />
-//         <button
-//           type="submit"
-//           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-//         >
-//           Generate and Run SQL
-//         </button>
-//       </form>
-
-//       {result && (
-//         <div className="mt-6">
-//           <h2 className="text-lg font-semibold mb-2">🤖 Generated SQL:</h2>
-//           <pre className="bg-gray-800 text-green-200 p-3 rounded whitespace-pre-wrap font-mono">
-//             {result}
-//           </pre>
-//         </div>
-//       )}
-
-//       {output && (
-//         <div className="mt-4">
-//           <h2 className="text-lg font-semibold mb-2">📊 Query Output:</h2>
-//           <pre className="bg-gray-100 text-gray-800 p-3 rounded whitespace-pre-wrap font-mono">
-//             {output}
-//           </pre>
-//         </div>
-//       )}
-//     </div>
-//   )
-// }
-// // Note: Make sure to replace the API endpoint URL with your actual backend URL if not running locally.
-// // Also, ensure your backend is set up to handle the SQL execution as shown in the initial code snippet.
-
-
-
-
-
-
-
-
-
 //Perfect code/////////////////////////////////////////////////////////////////////
 
 
@@ -430,21 +191,26 @@ export default function SQLPlayground() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: 'llama3.2',
-          messages: [
+ messages: [
             {
-              role: 'system',
-              content: `You are a SQL query generator for PostgreSQL.
+              role: "system",
+              content: `
+// You are a SQL query generator for PostgreSQL.
+
 Use ONLY the following schema:
 ${schema}
+
 ONLY return raw SQL. DO NOT explain, comment, or include alternatives.
 DO NOT return markdown or anything other than the SQL query.
-This is for an internal admin.`,
+
+This is for an internal admin.`
             },
             {
-              role: 'user',
+              role: "user",
               content: query,
-            },
-          ],
+            }
+          ]
+,
           stream: false,
         }),
       })

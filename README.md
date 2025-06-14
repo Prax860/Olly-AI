@@ -3,9 +3,7 @@
 
 <p align="center">
   <i>Talk to your database like it's ChatGPT — but fully offline.</i><br/>
-  <strong>Natural Language → SQL → Result</strong>
-  
-  made for oil india as an internship project......
+  <strong>Natural Language → SQL → Result</strong> <br> made for oil india as an internship project......
 </p>
 
 <p align="center">

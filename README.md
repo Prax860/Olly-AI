@@ -1,5 +1,6 @@
 
 <h1 align="center">🤖 Olly — The Offline AI Data Whisperer</h1>
+<p>made for oil india as an internship project......</p>
 
 <p align="center">
   <i>Talk to your database like it's ChatGPT — but fully offline.</i><br/>
